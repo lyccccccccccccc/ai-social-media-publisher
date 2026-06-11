@@ -1,0 +1,17 @@
+.env
+*.env
+temp/
+posted/
+failed/
+logs/
+__pycache__/
+*.pyc
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.mp4
+*.mov
+.DS_Store
+Thumbs.db
