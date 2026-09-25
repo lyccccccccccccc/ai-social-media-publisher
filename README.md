@@ -1,6 +1,46 @@
 # AI Social Media Publisher
 
-A sanitized portfolio version of an automated social media publishing workflow. The project pulls image assets from OneDrive, generates Instagram captions with OpenAI, uploads media to WordPress, publishes posts or stories through the Meta Graph API, archives processed files, and can send SMTP alert emails when jobs fail.
+A production-oriented Python automation that connects cloud storage, AI content generation, media hosting, and social publishing into a reliable unattended workflow for a real business use case.
+
+## Problem
+
+A small business needed a more reliable way to publish social media content without repeatedly downloading assets, writing captions, uploading media, publishing posts manually, and monitoring each run.
+
+## Solution
+
+I built a Python automation workflow that connects OneDrive, OpenAI, WordPress, and the Instagram Graph API to automate the publishing process end to end.
+
+The workflow can pull image assets from OneDrive, generate Instagram captions with OpenAI, upload media to WordPress, publish feed posts or stories through the Meta Graph API, archive processed files, and send SMTP alerts when jobs fail.
+
+## Why This Project Matters
+
+This project demonstrates more than basic API integration. It required handling scheduled execution, authentication, external service failures, retries, health checks, archiving, token validation, and alerting so the workflow could run reliably without constant manual supervision.
+
+It gave me practical experience designing automation that connects multiple external systems and needs to remain observable, testable, and resilient when individual services fail.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    OneDrive["OneDrive\nImage Assets"] --> Workflow["Python Automation Workflow"]
+    Workflow --> OpenAI["OpenAI API\nCaption Generation"]
+    Workflow --> WordPress["WordPress\nMedia Upload"]
+    WordPress --> Instagram["Instagram Graph API\nFeed Posts / Stories"]
+    Workflow --> Archive["OneDrive Archive\nSuccess / Failure"]
+    Workflow --> Health["Health & Token Checks"]
+    Workflow --> Alerts["SMTP Failure Alerts"]
+    Scheduler["GitHub Actions\nScheduled / Manual Runs"] --> Workflow
+```
+
+## Engineering Highlights
+
+- Integrates OneDrive, OpenAI, WordPress, and Instagram through external APIs.
+- Runs automatically through GitHub Actions using scheduled or manual workflows.
+- Uses retry handling, health checks, and token checks for unattended operation.
+- Archives successful and failed assets to support traceability and avoid reprocessing.
+- Sends optional automated email alerts when workflows fail.
+- Keeps credentials outside source control through environment variables and GitHub repository secrets.
+- Supports dry-run testing before live Instagram publishing.
 
 ## Features
 
