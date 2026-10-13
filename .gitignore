@@ -15,3 +15,6 @@ __pycache__/
 *.mov
 .DS_Store
 Thumbs.db
+
+# Portfolio screenshots (redacted)
+!docs/*.png
